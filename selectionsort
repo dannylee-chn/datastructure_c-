@@ -1,0 +1,71 @@
+#ifndef DATASTRUCTURE_STUDENT_H
+#define DATASTRUCTURE_STUDENT_H
+
+
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct Student {
+    string name;
+    int score;
+
+    bool operator<(const Student &otherStudent) {
+        return score != otherStudent.score? score>otherStudent.score:name<otherStudent.name;
+    }
+
+    friend ostream &operator<<(ostream &os, const Student &student) {
+        os <<"Student:" <<student.name << " " << student.score<<endl;
+        return os;
+    }
+};
+#endif //DATASTRUCTURE_STUDENT_H
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#include <iostream>
+#include"student.h"
+
+using namespace std;
+
+template <typename T>
+void selectionSort(T arr[], int n) {
+    for (int i = 0; i < n; i++) {
+        int minIndex=i;
+        for (int j = i+1; j < n; j++) {
+            if (arr[j] < arr[minIndex])
+                minIndex=j;
+            swap(arr[j], arr[minIndex]);
+        }
+    }
+}
+int main() {
+    int a[10]={120,2,3,30,5,6,7,81,9,0};
+    selectionSort(a,10);
+    for (int i = 0; i < 10; i++) {
+        cout << a[i] << " ";
+    }
+    cout << endl;
+
+    Student d[4]={{"D",90},{"A",45},{"B",80},{"C",60}};
+    selectionSort(d,4);
+    for (int i = 0; i < 10; i++) {
+        cout << d[i] << " ";
+    }
+    cout<<endl;
+
+    return 0;
+}
